@@ -17,12 +17,12 @@ export default function App() {
             <ul className="navbar-nav">
               <li className="nav-item">
                 <a className="nav-link" href="/list">
-                  List
+                  MyList
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/form">
-                  Form
+                  Add
                 </a>
               </li>
             </ul>
