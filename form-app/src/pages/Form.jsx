@@ -20,7 +20,10 @@ export default function Form() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    localStorage.setItem("title", title);
+    localStorage.setItem("link", link);
+    localStorage.setItem("season", season);
+    localStorage.setItem("episode", episode);
     setFormData(defaultFormData);
   };
 
@@ -57,7 +60,7 @@ export default function Form() {
               className="form-control"
               id="season"
               placeholder="Season"
-              aria-label="Season"
+              min="1"
               value={season}
               onChange={onChange}
             ></input>
@@ -68,7 +71,7 @@ export default function Form() {
               className="form-control"
               id="episode"
               placeholder="Episode"
-              aria-label="Episode"
+              min="1"
               value={episode}
               onChange={onChange}
             ></input>

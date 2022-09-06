@@ -1,6 +1,7 @@
 import "./App.css";
 import Form from "./pages/Form";
 import List from "./pages/List";
+import Navbar from "./components/Navbar";
 import {
   BrowserRouter as Router,
   Route,
@@ -11,24 +12,7 @@ import {
 export default function App() {
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-light">
-        <div className="container-fluid">
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link" href="/list">
-                  MyList
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/form">
-                  Add
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
       <Router>
         <Routes>
           <Route path="/list" element={<List />} />
