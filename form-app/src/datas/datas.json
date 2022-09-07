@@ -1,0 +1,18 @@
+{
+    "series": [
+        {
+        "id":1,
+        "title":"Breaking Bad",
+        "link":"https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
+        "season":"1",
+        "episode":"3"
+        },
+        {
+        "id":2,
+        "title":"Game of Thrones",
+        "link":"https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_.jpg",
+        "season":"11",
+        "episode":"12"
+        }
+    ]
+}

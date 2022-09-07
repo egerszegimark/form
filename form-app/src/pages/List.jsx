@@ -1,17 +1,27 @@
+import datas from "../datas/datas.json";
 export default function List() {
-  const title = localStorage.getItem("title");
-
   return (
     <>
-      <figure className="figure">
-        <img
-          src="https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg"
-          alt="Series img"
-          className="img-thumbnail"
-        ></img>
-        <figcaption className="figure-caption text-center">{title}</figcaption>
-        <figcaption className="figure-caption text-center">S01E03</figcaption>
-      </figure>
+      {datas.series.map((record) => {
+        return (
+          <figure className="figure" key={record.id}>
+            <img
+              src={`${record.link}`}
+              alt="Series img"
+              className="img-thumbnail"
+            ></img>
+            <figcaption className="figure-caption text-center">
+              {record.title}
+            </figcaption>
+            <figcaption className="figure-caption text-center">
+              {record.season.length === 1 && "S0" + record.season}
+              {record.episode.length === 1 && "E0" + record.episode}
+              {record.season.length > 1 && "S" + record.season}
+              {record.episode.length > 1 && "E" + record.episode}
+            </figcaption>
+          </figure>
+        );
+      })}
     </>
   );
 }

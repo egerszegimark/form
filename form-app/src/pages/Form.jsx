@@ -1,6 +1,8 @@
 import { useState } from "react";
+import datas from "../datas/datas.json";
 
 const defaultFormData = {
+  id: "",
   title: "",
   link: "",
   season: "",
@@ -20,10 +22,12 @@ export default function Form() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("title", title);
-    localStorage.setItem("link", link);
-    localStorage.setItem("season", season);
-    localStorage.setItem("episode", episode);
+    formData.id = datas.series.length + 1;
+
+    const myJString = JSON.stringify(formData);
+    datas.series.push(myJString);
+    console.log(datas.series);
+
     setFormData(defaultFormData);
   };
 
