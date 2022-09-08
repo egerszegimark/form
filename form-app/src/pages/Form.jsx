@@ -1,5 +1,4 @@
-import { useState } from "react";
-import datas from "../datas/datas.json";
+import { useEffect, useState } from "react";
 
 const defaultFormData = {
   id: "",
@@ -16,8 +15,6 @@ export default function Form() {
   );
   const { title, link, season, episode } = formData;
 
-  console.log(jsonData);
-
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -25,12 +22,16 @@ export default function Form() {
     }));
   };
 
+  useEffect(() => {
+    localStorage.setItem("jsonData", JSON.stringify(jsonData));
+  });
+
   const onSubmit = (e) => {
     e.preventDefault();
-    formData.id = datas.series.length + 1;
+    formData.id = JSON.parse(localStorage.getItem("jsonData")).length + 1;
 
     setJsonData((prevState) => [...prevState, formData]);
-    localStorage.setItem("jsonData", JSON.stringify(jsonData));
+    //localStorage.setItem("jsonData", JSON.stringify(jsonData));
 
     setFormData(defaultFormData);
   };
