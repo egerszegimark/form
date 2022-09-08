@@ -1,8 +1,9 @@
-import datas from "../datas/datas.json";
 export default function List() {
+  const data = JSON.parse(localStorage.getItem("jsonData"));
+
   return (
     <>
-      {datas.series.map((record) => {
+      {data.map((record) => {
         return (
           <figure className="figure" key={record.id}>
             <img

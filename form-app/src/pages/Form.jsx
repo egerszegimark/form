@@ -11,7 +11,12 @@ const defaultFormData = {
 
 export default function Form() {
   const [formData, setFormData] = useState(defaultFormData);
+  const [jsonData, setJsonData] = useState(
+    JSON.parse(localStorage.getItem("jsonData"))
+  );
   const { title, link, season, episode } = formData;
+
+  console.log(jsonData);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -24,9 +29,8 @@ export default function Form() {
     e.preventDefault();
     formData.id = datas.series.length + 1;
 
-    const myJString = JSON.stringify(formData);
-    datas.series.push(myJString);
-    console.log(datas.series);
+    setJsonData((prevState) => [...prevState, formData]);
+    localStorage.setItem("jsonData", JSON.stringify(jsonData));
 
     setFormData(defaultFormData);
   };
