@@ -28,17 +28,19 @@ export default function Form() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    formData.id = JSON.parse(localStorage.getItem("jsonData")).length + 1;
-
-    setJsonData((prevState) => [...prevState, formData]);
-    //localStorage.setItem("jsonData", JSON.stringify(jsonData));
-
+    if (jsonData != null) {
+      formData.id = JSON.parse(localStorage.getItem("jsonData")).length + 1;
+      setJsonData((prevState) => [...prevState, formData]);
+    } else {
+      formData.id = 1;
+      setJsonData(formData);
+    }
     setFormData(defaultFormData);
   };
 
   return (
     <>
-      <h1 className="display-5">Add a new series</h1>
+      <h1>Add a new series</h1>
       <form onSubmit={onSubmit}>
         <div className="mb-3">
           <input

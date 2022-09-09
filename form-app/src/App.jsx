@@ -11,7 +11,7 @@ import {
 
 export default function App() {
   return (
-    <>
+    <div className="background-image">
       <Navbar />
       <Router>
         <Routes>
@@ -20,6 +20,6 @@ export default function App() {
           <Route path="*" element={<Navigate to="/list" replace />} />
         </Routes>
       </Router>
-    </>
+    </div>
   );
 }
