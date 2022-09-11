@@ -1,6 +1,5 @@
 export default function List() {
   const data = JSON.parse(localStorage.getItem("jsonData"));
-
   if (data != null) {
     return (
       <>

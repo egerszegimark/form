@@ -1,24 +1,18 @@
 export default function Navbar() {
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-light">
-        <div className="container-fluid">
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link" href="/list">
-                  MyList
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/form">
-                  Add
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <ul>
+        <li>
+          <a className="hvr-underline-from-left" href="/list">
+            List
+          </a>
+        </li>
+        <li>
+          <a className="hvr-underline-from-left" href="/form">
+            Add
+          </a>
+        </li>
+      </ul>
     </>
   );
 }

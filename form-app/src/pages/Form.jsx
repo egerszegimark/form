@@ -11,7 +11,7 @@ const defaultFormData = {
 export default function Form() {
   const [formData, setFormData] = useState(defaultFormData);
   const [jsonData, setJsonData] = useState(
-    JSON.parse(localStorage.getItem("jsonData"))
+    JSON.parse(localStorage.getItem("newData"))
   );
   const { title, link, season, episode } = formData;
 
@@ -23,24 +23,24 @@ export default function Form() {
   };
 
   useEffect(() => {
-    localStorage.setItem("jsonData", JSON.stringify(jsonData));
+    localStorage.setItem("newData", JSON.stringify(jsonData));
   });
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (jsonData != null) {
-      formData.id = JSON.parse(localStorage.getItem("jsonData")).length + 1;
+      formData.id = JSON.parse(localStorage.getItem("newData")).length + 1;
       setJsonData((prevState) => [...prevState, formData]);
     } else {
       formData.id = 1;
-      setJsonData(formData);
+      setJsonData([formData]);
     }
     setFormData(defaultFormData);
   };
 
   return (
     <>
-      <h1>Add a new series</h1>
+      <h1 className="display-5">Add a new series</h1>
       <form onSubmit={onSubmit}>
         <div className="mb-3">
           <input
