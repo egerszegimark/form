@@ -1,5 +1,6 @@
 export default function List() {
-  const data = JSON.parse(localStorage.getItem("jsonData"));
+  const data = JSON.parse(localStorage.getItem("seriesData"));
+
   if (data != null) {
     return (
       <>
@@ -28,7 +29,7 @@ export default function List() {
   } else {
     return (
       <>
-        <h1>Your series list is empty!</h1>
+        <h1 className="display-5">Your series list is empty!</h1>
       </>
     );
   }

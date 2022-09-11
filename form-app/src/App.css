@@ -35,6 +35,10 @@ img {
   transform: scale(1.1);
 }
 
+.figure-caption {
+  color: rgb(27, 27, 27) !important;
+}
+
 .display-5 {
   text-align: center;
   margin: 10px;

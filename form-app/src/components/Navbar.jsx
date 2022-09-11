@@ -4,7 +4,7 @@ export default function Navbar() {
       <ul>
         <li>
           <a className="hvr-underline-from-left" href="/list">
-            List
+            My list
           </a>
         </li>
         <li>

@@ -10,8 +10,8 @@ const defaultFormData = {
 
 export default function Form() {
   const [formData, setFormData] = useState(defaultFormData);
-  const [jsonData, setJsonData] = useState(
-    JSON.parse(localStorage.getItem("newData"))
+  const [seriesData, setSeriesData] = useState(
+    JSON.parse(localStorage.getItem("seriesData"))
   );
   const { title, link, season, episode } = formData;
 
@@ -23,17 +23,17 @@ export default function Form() {
   };
 
   useEffect(() => {
-    localStorage.setItem("newData", JSON.stringify(jsonData));
+    localStorage.setItem("seriesData", JSON.stringify(seriesData));
   });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (jsonData != null) {
-      formData.id = JSON.parse(localStorage.getItem("newData")).length + 1;
-      setJsonData((prevState) => [...prevState, formData]);
+    if (seriesData != null) {
+      formData.id = JSON.parse(localStorage.getItem("seriesData")).length + 1;
+      setSeriesData((prevState) => [...prevState, formData]);
     } else {
       formData.id = 1;
-      setJsonData([formData]);
+      setSeriesData([formData]);
     }
     setFormData(defaultFormData);
   };
