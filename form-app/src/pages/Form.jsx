@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const defaultFormData = {
   id: "",
@@ -14,6 +15,7 @@ export default function Form() {
     JSON.parse(localStorage.getItem("seriesData"))
   );
   const { title, link, season, episode } = formData;
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -37,6 +39,7 @@ export default function Form() {
       setSeriesData([formData]);
     }
     setFormData(defaultFormData);
+    navigate(-1);
   };
 
   return (
