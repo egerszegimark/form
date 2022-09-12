@@ -42,6 +42,7 @@ img {
 .display-5 {
   text-align: center;
   margin: 10px;
+  text-shadow: rgba(0, 0, 0, 1) 1px 1px;
 }
 
 h1 {
@@ -103,4 +104,33 @@ li a {
 li a:hover{
   color: black !important;
 }
-/******/
+/*Close button*/
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+.close {
+  display: none;
+}
+.wrapper:hover > .close:before {
+  font-size: 60px;
+  font-weight: bold;
+  color: #000;
+}
+.wrapper:hover > .close {
+  position: absolute;
+  top: -12px;
+  right: -11px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, .8);
+  border-radius: 50%;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+}
+.wrapper:hover > .close:hover {
+  color: #fff;
+  background-color: rgba(179, 27, 25, 1);
+}
+/**/

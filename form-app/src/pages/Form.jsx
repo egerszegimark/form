@@ -29,7 +29,8 @@ export default function Form() {
   const onSubmit = (e) => {
     e.preventDefault();
     if (seriesData != null) {
-      formData.id = JSON.parse(localStorage.getItem("seriesData")).length + 1;
+      const length = JSON.parse(localStorage.getItem("seriesData")).length;
+      formData.id = seriesData[length - 1].id + 1;
       setSeriesData((prevState) => [...prevState, formData]);
     } else {
       formData.id = 1;
@@ -41,7 +42,7 @@ export default function Form() {
   return (
     <>
       <h1 className="display-5">Add a new series</h1>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} autoComplete="off">
         <div className="mb-3">
           <input
             type="text"
