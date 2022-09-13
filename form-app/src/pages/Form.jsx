@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const defaultFormData = {
   id: "",
@@ -9,13 +8,9 @@ const defaultFormData = {
   episode: "",
 };
 
-export default function Form() {
+export default function Form({ seriesData, setSeriesData, SetData }) {
   const [formData, setFormData] = useState(defaultFormData);
-  const [seriesData, setSeriesData] = useState(
-    JSON.parse(localStorage.getItem("seriesData"))
-  );
   const { title, link, season, episode } = formData;
-  const navigate = useNavigate();
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -25,21 +20,19 @@ export default function Form() {
   };
 
   useEffect(() => {
-    localStorage.setItem("seriesData", JSON.stringify(seriesData));
+    SetData(seriesData);
   });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (seriesData != null) {
-      const length = JSON.parse(localStorage.getItem("seriesData")).length;
-      formData.id = seriesData[length - 1].id + 1;
+    if (seriesData?.length > 0) {
+      formData.id = seriesData[seriesData?.length - 1].id + 1;
       setSeriesData((prevState) => [...prevState, formData]);
     } else {
       formData.id = 1;
       setSeriesData([formData]);
     }
     setFormData(defaultFormData);
-    navigate(-1);
   };
 
   return (
@@ -54,6 +47,7 @@ export default function Form() {
             placeholder="Title"
             value={title}
             onChange={onChange}
+            required
           ></input>
         </div>
 
@@ -65,6 +59,7 @@ export default function Form() {
             placeholder="Image link"
             value={link}
             onChange={onChange}
+            required
           ></input>
         </div>
 
@@ -78,6 +73,7 @@ export default function Form() {
               min="1"
               value={season}
               onChange={onChange}
+              required
             ></input>
           </div>
           <div className="col">
@@ -89,6 +85,7 @@ export default function Form() {
               min="1"
               value={episode}
               onChange={onChange}
+              required
             ></input>
           </div>
         </div>

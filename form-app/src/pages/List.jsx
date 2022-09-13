@@ -1,25 +1,28 @@
-import { useState } from "react";
-export default function List() {
-  const [data, setData] = useState(
-    JSON.parse(localStorage.getItem("seriesData"))
-  );
+import { useNavigate } from "react-router-dom";
+export default function List({ seriesData, setSeriesData, SetData }) {
+  const navigate = useNavigate();
 
   function Close(id) {
-    const newSeriesData = data.filter((record) => record.id !== id);
-    localStorage.setItem("seriesData", JSON.stringify(newSeriesData));
-    setData(newSeriesData);
+    const newSeriesData = seriesData.filter((record) => record.id !== id);
+    SetData(newSeriesData);
+    setSeriesData(newSeriesData);
   }
 
-  if (data != null) {
+  function onUpdate(id) {
+    navigate("/form/update", { replace: true });
+  }
+
+  if (seriesData?.length > 0) {
     return (
       <>
-        {data.map((record) => {
+        {seriesData.map((record) => {
           return (
             <figure className="figure wrapper" key={record.id}>
               <img
                 src={`${record.link}`}
                 alt="Series img"
                 className="img-thumbnail"
+                onClick={() => onUpdate(record.id)}
               ></img>
               <span className="close" onClick={() => Close(record.id)}>
                 &times;
@@ -29,8 +32,8 @@ export default function List() {
               </figcaption>
               <figcaption className="figure-caption text-center">
                 {record.season.length === 1 && "S0" + record.season}
-                {record.episode.length === 1 && "E0" + record.episode}
                 {record.season.length > 1 && "S" + record.season}
+                {record.episode.length === 1 && "E0" + record.episode}
                 {record.episode.length > 1 && "E" + record.episode}
               </figcaption>
             </figure>
