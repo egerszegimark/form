@@ -9,7 +9,7 @@ export default function List({ seriesData, setSeriesData, SetData }) {
   }
 
   function onUpdate(id) {
-    navigate("/form/update", { replace: true });
+    navigate("/form/update", { state: { id: id } });
   }
 
   if (seriesData?.length > 0) {
