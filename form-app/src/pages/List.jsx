@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 export default function List({ seriesData, setSeriesData, SetData }) {
   const navigate = useNavigate();
@@ -11,6 +12,10 @@ export default function List({ seriesData, setSeriesData, SetData }) {
   function onUpdate(id) {
     navigate("/form/update", { state: { id: id } });
   }
+
+  useEffect(() => {
+    setSeriesData(JSON.parse(localStorage.getItem("seriesData")));
+  }, [setSeriesData]);
 
   if (seriesData?.length > 0) {
     return (

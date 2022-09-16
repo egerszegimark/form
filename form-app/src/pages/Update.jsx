@@ -1,15 +1,45 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-export default function Update() {
+export default function Update({ SetData }) {
   const { state } = useLocation();
+  const navigate = useNavigate();
   const localData = JSON.parse(localStorage.getItem("seriesData"));
-  const info = localData.filter((record) => record.id === state.id);
-  console.log(info[0]);
+  const info = localData.filter((record) => record.id === state.id)[0];
+  const [updated, setUpdated] = useState({
+    season: info.season,
+    episode: info.episode,
+  });
+
+  const onChange = (e) => {
+    setUpdated((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  };
+
+  const updateState = () => {
+    const newState = localData.map((obj) => {
+      if (obj.id === state.id) {
+        return { ...obj, season: updated.season, episode: updated.episode };
+      }
+
+      return obj;
+    });
+
+    SetData(newState);
+    navigate("/list");
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    updateState();
+  };
 
   return (
     <>
       <h1 className="display-5">Update your progress</h1>
-      <form autoComplete="off">
+      <form onSubmit={onSubmit} autoComplete="off">
         <div className="mb-3 row">
           <div className="col">
             <input
@@ -18,8 +48,8 @@ export default function Update() {
               id="season"
               placeholder="Season"
               min="1"
-              //value={season}
-              //onChange={onChange}
+              value={updated.season}
+              onChange={onChange}
               required
             ></input>
           </div>
@@ -30,8 +60,8 @@ export default function Update() {
               id="episode"
               placeholder="Episode"
               min="1"
-              //value={episode}
-              //onChange={onChange}
+              value={updated.episode}
+              onChange={onChange}
               required
             ></input>
           </div>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const defaultFormData = {
   id: "",
@@ -9,8 +10,10 @@ const defaultFormData = {
 };
 
 export default function Form({ seriesData, setSeriesData, SetData }) {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(defaultFormData);
   const { title, link, season, episode } = formData;
+  const [ready, setReady] = useState(false);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -21,7 +24,8 @@ export default function Form({ seriesData, setSeriesData, SetData }) {
 
   useEffect(() => {
     SetData(seriesData);
-  });
+    if (ready) navigate("/list");
+  }, [ready, SetData, navigate, seriesData]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -33,6 +37,7 @@ export default function Form({ seriesData, setSeriesData, SetData }) {
       setSeriesData([formData]);
     }
     setFormData(defaultFormData);
+    setReady(true);
   };
 
   return (
@@ -91,7 +96,7 @@ export default function Form({ seriesData, setSeriesData, SetData }) {
         </div>
         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
           <button type="submit" className="btn btn-secondary">
-            Save
+            Add
           </button>
         </div>
       </form>

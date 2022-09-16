@@ -47,7 +47,7 @@ export default function App() {
               />
             }
           />
-          <Route path="/form/update" element={<Update />} />
+          <Route path="/form/update" element={<Update SetData={SetData} />} />
           <Route path="*" element={<Navigate to="/list" replace />} />
         </Routes>
       </Router>
